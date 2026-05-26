@@ -7,7 +7,9 @@ import {
   Home,
   Moon,
   Sun,
-  Download
+  Download,
+  Search,
+  Calendar
 } from 'lucide-react';
 
 const CATEGORIES = {
@@ -39,6 +41,7 @@ const FinanceApp = () => {
 
   const [activeTab, setActiveTab] = useState('home');
   const [darkMode, setDarkMode] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
 
   useEffect(() => {
@@ -86,7 +89,9 @@ const FinanceApp = () => {
 
   const balance = income - expense;
 
-  const filteredTransactions = transactions;
+  const filteredTransactions = transactions.filter(t => 
+    t.text.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const getCategoryLabel = (cat) => {
     const allCategories = [...CATEGORIES.income, ...CATEGORIES.expense];
