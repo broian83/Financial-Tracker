@@ -3,17 +3,11 @@ import {
   Plus, 
   ArrowUpRight, 
   ArrowDownLeft, 
-  Search,
   X,
   Home,
-  BarChart2,
-  Calendar,
-  Filter,
-  Settings,
   Moon,
   Sun,
-  Download,
-  ChevronRight
+  Download
 } from 'lucide-react';
 
 const CATEGORIES = {
@@ -42,10 +36,10 @@ const FinanceApp = () => {
   const [amount, setAmount] = useState('');
   const [type, setType] = useState('expense');
   const [category, setCategory] = useState('food');
-  const [searchTerm, setSearchTerm] = useState('');
+
   const [activeTab, setActiveTab] = useState('home');
   const [darkMode, setDarkMode] = useState(false);
-  const [dateFilter, setDateFilter] = useState('all');
+
 
   useEffect(() => {
     const saved = localStorage.getItem('transactions');
@@ -92,9 +86,7 @@ const FinanceApp = () => {
 
   const balance = income - expense;
 
-  const filteredTransactions = transactions.filter(t => 
-    t.text.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredTransactions = transactions;
 
   const getCategoryLabel = (cat) => {
     const allCategories = [...CATEGORIES.income, ...CATEGORIES.expense];
